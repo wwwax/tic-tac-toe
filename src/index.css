@@ -6,10 +6,16 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-.Board-title {
-  color: red;
+.game {
+  display: flex;
 }
 
-.Square-title {
-  color: blue;
+.game-info {
+  background-color: red;
+}
+
+/* SQUARE */
+
+.square {
+  background-color: lightskyblue;
 }

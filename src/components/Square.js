@@ -1,9 +1,5 @@
-const Square = () => {
-  return (
-    <div>
-      <h2 className='Square-title'>Square</h2>
-    </div>
-  );
+const Square = ({ i }) => {
+  return <button className='square'>{i}</button>;
 };
 
 export default Square;
