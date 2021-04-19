@@ -4,7 +4,7 @@ const Board = () => {
   const status = 'Next Player: X';
 
   const renderSquare = (i) => {
-    return <Square i={i} />;
+    return <Square value={i} />;
   };
 
   return (
