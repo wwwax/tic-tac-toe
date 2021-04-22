@@ -1,15 +1,7 @@
-import { useState } from 'react';
-
-const Square = ({ value }) => {
-  const [testValue, setTestValue] = useState(null);
-
-  const onFieldClick = () => {
-    setTestValue('X');
-  };
-
+const Square = ({ value, onClick }) => {
   return (
-    <button className='square' onClick={onFieldClick}>
-      {testValue}
+    <button className='square' onClick={() => onClick()}>
+      {value}
     </button>
   );
 };
