@@ -2,14 +2,16 @@ import { useState } from 'react';
 import Square from './Square';
 
 const Board = () => {
-  const status = 'Next Player: X';
-
   const [squares, setSquares] = useState(Array(9).fill(null));
+  const [xIsNext, setXiSNext] = useState(true);
+
+  const status = `Next Player: ${xIsNext ? 'X' : 'O'}`;
 
   const handleClick = (i) => {
     const copySquares = squares.slice();
-    copySquares[i] = 'X';
+    copySquares[i] = xIsNext ? 'X' : 'O';
     setSquares(copySquares);
+    setXiSNext((prev) => !prev);
   };
 
   const renderSquare = (i) => {
