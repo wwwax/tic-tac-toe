@@ -6,15 +6,14 @@ const Board = () => {
 
   const [squares, setSquares] = useState(Array(9).fill(null));
 
+  const handleClick = (i) => {
+    const copySquares = squares.slice();
+    copySquares[i] = 'X';
+    setSquares(copySquares);
+  };
+
   const renderSquare = (i) => {
-    return (
-      <Square
-        value={squares[i]}
-        onClick={() => {
-          console.log('hello');
-        }}
-      />
-    );
+    return <Square value={squares[i]} onClick={() => handleClick(i)} />;
   };
 
   return (
