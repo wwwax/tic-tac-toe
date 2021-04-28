@@ -24,6 +24,7 @@ body {
 
 .game-info {
   background-color: red;
+  font-family: consolas;
 }
 
 /* SQUARE */
