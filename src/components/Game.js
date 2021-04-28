@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import Board from './components/Board';
-import calculateWinner from './calculateWinner';
+import Board from './Board';
+import calculateWinner from '../functions/calculateWinner';
 
 const Game = () => {
   const [history, setHistory] = useState([{ squares: Array(9).fill(null) }]);
