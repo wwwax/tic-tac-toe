@@ -10,10 +10,12 @@
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu',
-    'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  font-family: consolas;
+}
+
+ol {
+  list-style: none;
+  padding-left: 10px;
 }
 
 /* GAME */
@@ -21,13 +23,6 @@ body {
 .game {
   display: flex;
 }
-
-.game-info {
-  background-color: red;
-  font-family: consolas;
-}
-
-/* SQUARE */
 
 .square {
   background: #fff;
@@ -42,4 +37,8 @@ body {
   padding: 0;
   text-align: center;
   width: 34px;
+}
+
+.status {
+  padding-left: 10px;
 }

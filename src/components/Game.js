@@ -30,6 +30,16 @@ const Game = () => {
     setXisNext((prev) => !prev);
   };
 
+  const moves = history.map((step, move) => {
+    const desc = move ? `К ходу #${move}` : 'К началу игры';
+
+    return (
+      <li key={move}>
+        <button onClick={() => null}>{desc}</button>
+      </li>
+    );
+  });
+
   return (
     <div className='game'>
       <div className='game-board'>
@@ -37,8 +47,8 @@ const Game = () => {
       </div>
 
       <div className='game-info'>
-        <div>{status}</div>
-        <ol>{/* todo */}</ol>
+        <div className='status'>{status}</div>
+        <ol>{moves}</ol>
       </div>
     </div>
   );
