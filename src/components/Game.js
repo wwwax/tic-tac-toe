@@ -3,34 +3,39 @@ import Board from './Board';
 import calculateWinner from '../functions/calculateWinner';
 
 const Game = () => {
-  const [history, setHistory] = useState([{ squares: Array(9).fill(null) }]);
-  const [xIsNext, setXisNext] = useState(true);
+  const [state, setState] = useState({
+    history: [{ squares: Array(9).fill(null) }],
+    xIsNext: true,
+  });
 
-  const current = history[history.length - 1];
+  const current = state.history[state.history.length - 1];
   const winner = calculateWinner(current.squares);
   let status;
 
   if (winner) {
     status = `Winner is ${winner}`;
   } else {
-    status = `Next player is ${xIsNext ? 'X' : 'O'}`;
+    status = `Next player is ${state.xIsNext ? 'X' : 'O'}`;
   }
 
   const handleClick = (i) => {
-    const current = history[history.length - 1];
+    const current = state.history[state.history.length - 1];
     const squares = current.squares.slice();
 
     if (calculateWinner(squares) || squares[i]) {
       return;
     }
 
-    squares[i] = xIsNext ? 'X' : 'O';
+    squares[i] = state.xIsNext ? 'X' : 'O';
 
-    setHistory((prev) => prev.concat([{ squares: squares }]));
-    setXisNext((prev) => !prev);
+    setState((prev) => ({
+      ...prev,
+      xIsNext: !prev.xIsNext,
+      history: prev.history.concat([{ squares: squares }]),
+    }));
   };
 
-  const moves = history.map((step, move) => {
+  const moves = state.history.map((step, move) => {
     const desc = move ? `К ходу #${move}` : 'К началу игры';
 
     return (
