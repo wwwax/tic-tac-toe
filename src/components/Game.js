@@ -6,9 +6,10 @@ const Game = () => {
   const [state, setState] = useState({
     history: [{ squares: Array(9).fill(null) }],
     xIsNext: true,
+    stepNumber: 0,
   });
 
-  const current = state.history[state.history.length - 1];
+  const current = state.history[state.stepNumber];
   const winner = calculateWinner(current.squares);
   let status;
 
@@ -19,6 +20,7 @@ const Game = () => {
   }
 
   const handleClick = (i) => {
+    const history = state.history.slice(0, state.stepNumber + 1);
     const current = state.history[state.history.length - 1];
     const squares = current.squares.slice();
 
@@ -31,8 +33,13 @@ const Game = () => {
     setState((prev) => ({
       ...prev,
       xIsNext: !prev.xIsNext,
+      stepNumber: history.length,
       history: prev.history.concat([{ squares: squares }]),
     }));
+  };
+
+  const jumpTo = (step) => {
+    setState((prev) => ({ ...prev, stepNumber: step, xIsNext: !prev.xIsNext }));
   };
 
   const moves = state.history.map((step, move) => {
@@ -40,7 +47,7 @@ const Game = () => {
 
     return (
       <li key={move}>
-        <button onClick={() => null}>{desc}</button>
+        <button onClick={() => jumpTo(move)}>{desc}</button>
       </li>
     );
   });
