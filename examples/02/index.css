@@ -1,0 +1,52 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: consolas;
+}
+
+.board {
+  margin: 20px auto 0;
+  width: 150px;
+  height: 150px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.square {
+  width: 50px;
+  height: 50px;
+  border: 1px solid #333;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 30px;
+  font-weight: 700;
+}
+
+.history_list {
+  padding: 10px 0;
+}
+
+.history_item {
+  text-align: center;
+  padding: 4px 0;
+}
+
+.history_button {
+  padding: 4px 8px;
+}
+
+.status {
+  text-align: center;
+  padding: 8px 0;
+  color: tomato;
+}
