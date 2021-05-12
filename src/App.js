@@ -25,15 +25,18 @@ function winnerChecking(squares) {
 
 export default function App() {
   const [state, setState] = useState({
-    squares: Array(9).fill(null),
+    history: [{ squares: Array(9).fill(null) }],
     xIsNext: true,
+    stepNumber: 0,
   });
 
   /**
    *
    */
 
-  const winner = winnerChecking(state.squares);
+  const history = state.history;
+  const current = history[state.stepNumber];
+  const winner = winnerChecking(current.squares);
   let status;
 
   if (winner) {
@@ -47,16 +50,29 @@ export default function App() {
    */
 
   const handleClick = (i) => {
-    if (state.squares[i] || winner) {
+    const history = state.history.slice(0, state.stepNumber + 1);
+    const current = history[history.length - 1];
+    const squares = current.squares.slice();
+
+    if (squares[i] || winnerChecking(squares)) {
       return;
     }
 
-    const copySquares = state.squares.slice();
-    copySquares[i] = state.xIsNext ? 'X' : 'O';
+    squares[i] = state.xIsNext ? 'X' : 'O';
+
     setState((prev) => ({
       ...prev,
-      squares: copySquares,
+      history: history.concat([{ squares: squares }]),
       xIsNext: !prev.xIsNext,
+      stepNumber: history.length,
+    }));
+  };
+
+  const jumpTo = (stepNumber) => {
+    setState((prev) => ({
+      ...prev,
+      stepNumber: stepNumber,
+      xIsNext: stepNumber % 2 === 0,
     }));
   };
 
@@ -67,7 +83,7 @@ export default function App() {
   return (
     <>
       <div className='board'>
-        {state.squares.map((square, idx) => (
+        {current.squares.map((square, idx) => (
           <div className='square' key={idx} onClick={() => handleClick(idx)}>
             {square}
           </div>
@@ -75,6 +91,25 @@ export default function App() {
       </div>
 
       <div className='status'>{status}</div>
+
+      <h3 className='history_title'>History:</h3>
+      <ol className='history_list'>
+        {history.map((el, idx) => {
+          let text;
+
+          if (idx === 0) {
+            text = 'start';
+          } else {
+            text = `go to ${idx}`;
+          }
+
+          return (
+            <li className='history_list-item' key={idx} onClick={() => jumpTo(idx)}>
+              {text}
+            </li>
+          );
+        })}
+      </ol>
     </>
   );
 }

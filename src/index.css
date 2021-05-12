@@ -37,3 +37,19 @@ body {
   padding: 20px 0;
   text-align: center;
 }
+
+.history_title {
+  text-align: center;
+  color: tomato;
+  margin-bottom: 10px;
+}
+
+.history_list-item {
+  text-align: center;
+  background-color: pink;
+  width: 100px;
+  padding: 4px 0;
+  margin: 0 auto 10px;
+  cursor: pointer;
+  list-style: none;
+}
