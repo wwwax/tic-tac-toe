@@ -53,3 +53,19 @@ body {
   cursor: pointer;
   list-style: none;
 }
+
+.sort-btn {
+  width: 120px;
+  height: 40px;
+  margin: 0 auto 10px;
+  background-color: deepskyblue;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.numbers_list {
+  width: 200px;
+  margin: 0 auto;
+}
