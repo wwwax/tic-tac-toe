@@ -16,7 +16,7 @@ function winnerChecking(squares) {
     const [a, b, c] = lines[i];
 
     if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
-      return squares[a];
+      return lines[i];
     }
   }
 
@@ -41,7 +41,9 @@ export default function App() {
   let status;
 
   if (winner) {
-    status = `Winner: ${winner}`;
+    const winnerIndex = winner[0];
+    const winnerSymbol = current.squares[winnerIndex];
+    status = `Winner: ${winnerSymbol}`;
   } else {
     status = `Next: ${state.xIsNext ? 'X' : 'O'}`;
   }
@@ -97,11 +99,27 @@ export default function App() {
   return (
     <>
       <div className='board'>
-        {current.squares.map((square, idx) => (
-          <div className='square' key={idx} onClick={() => handleClick(idx)}>
-            {square}
-          </div>
-        ))}
+        {current.squares.map((square, idx) => {
+          let winnerStyles = {};
+
+          if (winner) {
+            if (winner.includes(idx)) {
+              winnerStyles = {
+                backgroundColor: 'lightgreen',
+              };
+            }
+          }
+
+          return (
+            <div
+              className='square'
+              key={idx}
+              onClick={() => handleClick(idx)}
+              style={winnerStyles}>
+              {square}
+            </div>
+          );
+        })}
       </div>
 
       <div className='status'>{status}</div>
