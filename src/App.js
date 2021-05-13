@@ -44,6 +44,8 @@ export default function App() {
     const winnerIndex = winner[0];
     const winnerSymbol = current.squares[winnerIndex];
     status = `Winner: ${winnerSymbol}`;
+  } else if (state.history.length === 10 && !winner) {
+    status = 'Draw!';
   } else {
     status = `Next: ${state.xIsNext ? 'X' : 'O'}`;
   }
@@ -146,7 +148,7 @@ export default function App() {
 
         {historyIndexes.length === 1 ? null : (
           <div className='sort-btn' onClick={toggleSort}>
-            {state.sortedUp ? 'Sort Down' : 'Sort Up'}
+            {state.sortedUp ? 'sort down' : 'sort up'}
           </div>
         )}
       </>
