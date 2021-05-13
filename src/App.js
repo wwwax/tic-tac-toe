@@ -135,32 +135,32 @@ export default function App() {
 
       <div className='status'>{status}</div>
 
-      <>
-        <h3 className='history_title'>History:</h3>
-        <ol className='history_list'>
-          {historyIndexes.map((idx) => {
-            let text;
+      {history.length !== 1 ? (
+        <>
+          <h3 className='history_title'>History:</h3>
+          <ol className='history_list'>
+            {historyIndexes.map((idx) => {
+              let text;
 
-            if (idx === 0) {
-              text = 'start';
-            } else {
-              text = `go to ${idx}`;
-            }
+              if (idx === 0) {
+                text = 'start';
+              } else {
+                text = `go to ${idx}`;
+              }
 
-            return (
-              <li className='history_list-item' key={idx} onClick={() => jumpTo(idx)}>
-                {text}
-              </li>
-            );
-          })}
-        </ol>
+              return (
+                <li className='history_list-item' key={idx} onClick={() => jumpTo(idx)}>
+                  {text}
+                </li>
+              );
+            })}
+          </ol>
 
-        {historyIndexes.length === 1 ? null : (
           <div className='sort-btn' onClick={toggleSort}>
             {state.sortedUp ? 'sort down' : 'sort up'}
           </div>
-        )}
-      </>
+        </>
+      ) : null}
 
       <div className='reset-btn' onClick={refreshGame}>
         &#x21bb;
