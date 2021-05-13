@@ -94,6 +94,15 @@ export default function App() {
     }));
   };
 
+  const refreshGame = () => {
+    setState({
+      history: [{ squares: Array(9).fill(null) }],
+      xIsNext: true,
+      stepNumber: 0,
+      sortedUp: true,
+    });
+  };
+
   /**
    *
    */
@@ -152,6 +161,10 @@ export default function App() {
           </div>
         )}
       </>
+
+      <div className='reset-btn' onClick={refreshGame}>
+        &#x21bb;
+      </div>
     </>
   );
 }
